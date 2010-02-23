@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <link rel="stylesheet" media="screen" type="text/css" href="/css/colorpicker.css" />
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/colorpicker.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var chooseColor = function() {
+           var red = $(".colorpicker_rgb_r input").val();
+           var green = $(".colorpicker_rgb_g input").val();
+           var blue = $(".colorpicker_rgb_b input").val();
+           document.location = "/search/" + red + "/" + green + "/" + blue;
+        };
+        $("#picker").ColorPicker({flat: true, 
+                                  color: {r: <%= @red.to_i %>, g: <%= @green.to_i %>, b: <%= @blue.to_i %> }, 
+                                  onSubmit: chooseColor });
+      });
+    </script>
+
+    <style type="text/css">
+      body {
+        font-family: "Baskerville", serif;
+        color: #FFF;
+        background-color: #000;
+      }
+      #container {
+        width: 875px;
+        margin: 20px auto;
+        position: relative;
+      }
+      #picker {
+        float: right;
+      }
+      #looks {
+        margin: 15px -15px;
+      }
+      h1 {
+        font-weight: normal;
+      }
+      h2 {
+        font-weight: normal;
+        font-size: 1.4em;
+      }
+      div.look {
+        margin: 15px;
+        float: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="picker"></div>
+
+      <h1>GILT GROUPE</h1>
+      <h2>Color Search</h2>
+      
+      <div style="clear:both;"></div>
+ 
+      <div id="looks">
+        <% @colors.each do |color| %>
+          <div class="look">
+            <img src="<%= color["look"]["image_path"].sub(/\/Users\/michael\/code\/gilt\/share\/public\/uploads/, "http://cdn1.gilt.com/images/share/uploads") %>" width="270" height="360">
+          </div>
+        <% end %>
+
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  </body>
+</html>

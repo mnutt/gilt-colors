@@ -1,0 +1,11 @@
+<% @looks.each do |look| %>
+  <div>
+    <img style="float: left; margin-bottom: 20px;" src="<%= look["image_path"].sub(/\/Users\/michael\/code\/gilt\/share\/public\/uploads/, "http://cdn1.gilt.com/images/share/uploads").sub(/swatch/, "sm") %>">
+    <% look["colors"].each do |color| %>
+      <% amount = color["amount"].to_i / 1500.0 * 100 %>
+      <% background = "rgb(#{color["red"].to_i},#{color["green"].to_i}, #{color["blue"].to_i})" %>
+      <div style="float: left; margin: 0 10px; width: <%= "#{amount}px" %>; height: <%= "#{amount}px" %>; background-color: <%= background %>">&nbsp;</div>
+    <% end %>
+    <div style="clear: both;">
+  </div>
+<% end %>
