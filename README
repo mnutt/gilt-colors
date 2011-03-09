@@ -1,0 +1,16 @@
+Gilt Colors
+
+Takes a Gilt database and extracts color info from every item.
+
+To run:
+
+# Go through each look and extract a histogram to find the colors
+ruby scripts/colors.rb
+
+# Index the looks by colors
+ruby scripts/color_convert.rb
+
+# Sinatra app that does search
+ruby colors.rb
+
+Then open http://localhost:4567/search/0/0/0
